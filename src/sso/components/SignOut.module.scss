@@ -1,0 +1,101 @@
+@import "/styles/_base";
+@import "/styles/_colors";
+
+.join {
+  button {
+    background-color: $color-primary;
+    border-radius: 0.625rem;
+    color: $color-on-primary;
+    padding: 0.25rem 1rem 0.25rem;
+    margin-left: 9px;
+    margin-right: 9px;
+    padding: $gutter-small;
+    text-transform: uppercase;
+  }
+}
+
+.content {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  padding-left: 20px;
+  padding-right: 20px;
+
+  & .inner {
+    flex-grow: 3;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    padding-top: 30px;
+    margin: 0;
+    text-align: center;
+    max-width: 380px;
+
+    > * + * {
+      margin-top: 20px;
+    }
+
+    & h2 {
+      font-size: 30px;
+    }
+
+    input {
+      border: none;
+      border-radius: 4px;
+      padding-top: 20px;
+      padding-bottom: 20px;
+      margin-top: 8px;
+      font-size: 16px;
+    }
+
+    button {
+      width: 100%;
+      display: inline-flex;
+      position: relative;
+      justify-content: center;
+      align-items: center;
+      margin-top: 44px;
+      margin-bottom: 20px;
+      padding: 20px 40px;
+      transition: all 0.23s cubic-bezier(0.86, 0, 0.07, 1);
+      text-decoration: none;
+      font-size: var(--body-font-size, 16px);
+      font-family: "ropa-sans-pro", sans-serif;
+      font-weight: bold;
+      text-align: center;
+      white-space: nowrap;
+      appearance: none;
+      border: none;
+      cursor: pointer;
+      text-transform: uppercase;
+      background-color: $color-primary;
+      color: $color-on-surface;
+      letter-spacing: 0.25em;
+      border-radius: 4px;
+
+      &:hover {
+        filter: brightness(120%);
+      }
+
+      &:disabled {
+        background-color: #ccc;
+        color: #666;
+        cursor: not-allowed;
+      }
+    }
+
+    @media (min-width: 701px) {
+      padding-top: 70px;
+      padding-left: 30px;
+      padding-right: 30px;
+    }
+
+    @media (min-width: 1201px) {
+      padding-left: 40px;
+      padding-right: 40px;
+    }
+  }
+}

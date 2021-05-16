@@ -1,0 +1,22 @@
+version: '3.7'
+
+services:
+  web:
+    image: node:buster
+    ports:
+      - 9051:3000
+      - 9041:8081
+    volumes:
+      - .:/app
+    environment:
+      - NODE_ENV=development
+      - NEXT_PUBLIC_API_KEY=ORfZIvLL.xuIB27UZrUc4dGRlhBZmX92H14ZVSj4X
+      - NEXT_PUBLIC_API_HOST=https://rivt.localhost:9011
+      - OUTSIDE_HOST=https://pom-olp.lndo.site:9444
+    command: >
+      bash -c "
+      yarn install &&
+      yarn build &&
+      yarn bundle-dev & yarn dev
+      "
+    working_dir: /app

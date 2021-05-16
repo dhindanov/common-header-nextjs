@@ -1,7 +1,16 @@
-import '../styles/globals.css'
+import * as React from "react";
+import "/styles/globals.scss";
+import { AppProvider } from "/src/components/AppContext";
+import { createRequire } from 'module';
 
-function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
-}
+const require = createRequire(import.meta.url);
 
-export default MyApp
+const App = ({ Component, pageProps }) => {
+  return (
+    <AppProvider>
+      <Component {...pageProps} />
+    </AppProvider>
+  );
+};
+
+export default App;
