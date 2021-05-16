@@ -68,4 +68,9 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+notes.txt
+notes.md
+public/*.js
+public/*.LICENSE.txt
 .vscode/settings.json
