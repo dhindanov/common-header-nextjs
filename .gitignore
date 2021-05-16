@@ -35,6 +35,7 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+temp_auto_push.bat
 
 # dependencies
 /node_modules
@@ -68,4 +69,9 @@ yarn-error.log*
 
 # vercel
 .vercel
-.vscode/settings.json
+
+notes.txt
+notes.md
+public/*.js
+public/*.LICENSE.txt
+.gitignore
