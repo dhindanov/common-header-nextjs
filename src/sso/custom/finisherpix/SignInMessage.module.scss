@@ -1,0 +1,29 @@
+.content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+
+  & > p.header {
+    font-weight: bold;
+    text-align: center;
+    vertical-align: baseline;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+
+    & > span {
+      padding-top: 3px;
+    }
+  }
+
+  & > p.message {
+    text-align: center;
+    font-family: acumin-pro;
+    font-style: normal;
+    line-height: 30px;
+  }
+}

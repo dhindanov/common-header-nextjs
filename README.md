@@ -1,34 +1,59 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+This is a demo of a Nextjs header that can be plugged into several affiliated websites to perform common tasks.
 
-## Getting Started
+# Interop notes
 
-First, run the development server:
+## Loading
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+The header is created with one javascript link:
+`https://friend-login-preview.vercel.app/bundle.min.js`
+or
+`https://friend-login.vercel.app/bundle.min.js`
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The app hoists a single global `window.OutsideLogin`. To start the header, make this call:
+` [javascript]
+if (window.OutsideLogin) window.OutsideLogin.init({
+  apiKey: "AmQqVQSG.dF6dRAc3tedCijfsopCQQ0SPf6yzAhbb",
+  apiHost: "https://staging-api.rivt.com",
+  parentName: "pinkbike",
+  callback: () => {},
+  selector: "#outside-header",
+});
+`
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+## Callback
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+Provide a callable `callback` argument when starting the header. When the user logs in or out of their
+Outside+ account, the `callback` will be called with an object reflecting user status changes.
 
-## Learn More
+Several events are defined at the moment:
+{
+  action: "userProfile",
+  user: {...},
+}
 
-To learn more about Next.js, take a look at the following resources:
+`user === null` signals a signout by the user.
+Otherwise, `user` is an object containing some user information.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Header actions
 
-## Deploy on Vercel
+Some links in the header simply redirect the user to an Outside+ site.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Some buttons perform actions in the context of the site on which the header is displayed.
+These actions can be overriden with the following call:
+`
+window.OutsideLogin.setButtonCalls({
+    join: () => console.log('join clicked'),
+    signin: () => console.log('signin clicked'),
+    profile: () => console.log('profile clicked'),
+});
+`
+To reset button actions to their defaults, make a subsequent call with `null` as the value for an action, e.g.:
+`
+window.OutsideLogin.setButtonCalls({
+    join: null,
+    signin: null,
+    profile: null,
+});
+`
